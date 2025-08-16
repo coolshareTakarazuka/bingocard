@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="disableButton(this)"
+      id="userForm"
+      action="https://script.google.com/macros/s/AKfycbxZM-jTMZcEzPBkYI7xNT9gjdpUnzuabwiWnXPFIshSz6f9D1Nkm3itvcfNzfS4IoIlRw/exec"
+      method="post"
+      
+    >
+
+    <button id="button" class="button" type="submit" style="display: none;";>ログインされていません</button>
+
+    <script>
+        // URLクエリからパラメータ取得してフォームに hidden input を追加
+        function getQueryParam(param) {
+          const urlParams = new URLSearchParams(window.location.search);
+          return urlParams.get(param);
+        }
+
+        window.onload = function () {
+          const statusNo = getQueryParam("status");
+          if (statusNo) {
+            const input = document.createElement("input");
+            input.type = "hidden";
+            input.name = "statusNo";
+            input.value = statusNo;
+            document.getElementById("userForm").appendChild(input);
+
+            document.getElementById("button").click();
+          }
+        };
+      </script>
+
+      </form>
+</body>
+</html>
